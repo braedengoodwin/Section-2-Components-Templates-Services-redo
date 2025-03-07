@@ -2,8 +2,18 @@
 
 <main>
   <ul id="users">
+    @for(user of users; track user.id){
     <li>
-      <app-user />
+      <!-- the "user[0].avatar" after the = is how you set dynamic values, specifically the it needs to be in the "" -->
+      <!-- the () around the event name is known as event binding -->
+      <app-user [user]="user" (select)="onSelectUser($event)" />
     </li>
+    }
   </ul>
+
+  @if(selectedUser){
+  <app-tasks [name]="selectedUser.name" />
+  } @else {
+  <p id="fallback">Select a user to see their tasks</p>
+  }
 </main>
