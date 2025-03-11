@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
+import { type User } from './user.model';
 
 // this is a type alias
 // type User = {
@@ -7,12 +8,6 @@ import { DUMMY_USERS } from '../dummy-users';
 //   avatar: string;
 //   name: string;
 // };
-
-interface User {
-  id: string;
-  avatar: string;
-  name: string;
-}
 
 @Component({
   selector: 'app-user',
@@ -24,6 +19,7 @@ interface User {
 export class UserComponent {
   // the '!' tells typescript that we know that avatar WILL DEFINITELY be assigned a value eventually
   @Input({ required: true }) user!: User;
+  @Input({ required: true }) selected!: boolean;
   @Output() select = new EventEmitter<string>();
 
   // this getter is referenced as a 'property' in the user.component.html file
